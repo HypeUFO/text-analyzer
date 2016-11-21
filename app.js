@@ -17,14 +17,14 @@ function countUniqueWords(words) {
 
 function getAvgWordLength(words) {
   var total = words.join('').length;
-  return total / words.length;
+  return (total / words.length).toFixed(2);
 }
 
 
 function getAvgWordsPerSentence(text) {
-  var numSentences = text.split('.', '?', '!');
+  var numSentences = text.split(/[.!?]/).length;
   var wordCount = tokenizeText(text).length;
-  return (wordCount / numSentences);
+  return (wordCount / numSentences).toFixed(2);
 }
 
 
