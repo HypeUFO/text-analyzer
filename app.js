@@ -15,7 +15,17 @@ function countUniqueWords(words) {
   return uniqueWords.length;
 }
 
+function getAvgWordLength(words) {
+  var total = words.join('').length;
+  return total / words.length;
+}
 
+
+function getAvgWordsPerSentence(text) {
+  var numSentences = text.split('.', '?', '!');
+  var wordCount = tokenizeText(text).length;
+  return (wordCount / numSentences);
+}
 
 
 
@@ -25,13 +35,17 @@ function runReport(text) {
   var words = tokenizeText(text);
   var numUniqueWords = countUniqueWords(words);
   var numWords = words.length;
-
+  var avgWordLength = getAvgWordLength(words);
+  var avgWordsPerSentence = getAvgWordsPerSentence(text);
 
 
   var textReport = $('.js-text-report');
   textReport.find('.js-word-count').text(numWords);
   textReport.find('.js-unique-word-count').text(numUniqueWords);
-
+  textReport.find('.js-avg-word-length').text(
+    avgWordLength + " characters");
+  textReport.find('.js-avg-sentence-length').text(
+    avgWordsPerSentence + " words");
   textReport.removeClass('hidden');
 
 }
